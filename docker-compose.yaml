@@ -27,7 +27,7 @@ services:
     working_dir: /var/www/html
     command: >
       sh -c "composer install && 
-      ./install-magento.sh $MYSQL_USER $MYSQL_PASSWORD $USERNAME_MAGENTO_KEY $PASSWORD_MAGENTO_KEY"
+      ./install-magento.sh $MYSQL_USER $MYSQL_PASSWORD $MYSQL_DATABASE $USERNAME_MAGENTO_KEY $PASSWORD_MAGENTO_KEY"
     depends_on:
       - nginx
       - mysql
