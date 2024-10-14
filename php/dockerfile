@@ -1,0 +1,56 @@
+FROM php:8.2-fpm
+
+# Sao chép composer vào hình ảnh
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer 
+
+# Cài đặt các extension cần thiết, bao gồm mysqli
+RUN docker-php-ext-install mysqli && \
+    apt-get update && \
+    apt-get install -y libcurl4-openssl-dev && \
+    docker-php-ext-install curl
+
+# Cài đặt các gói ICU và các phần mở rộng PHP
+RUN apt-get update && apt-get install -y libicu-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl
+
+# Cài đặt bcmath và zip
+RUN apt-get install -y libzip-dev \
+    && docker-php-ext-install bcmath zip
+
+# Cài đặt các thư viện cần thiết
+RUN apt-get update && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    unzip \
+    git
+
+# Cấu hình và cài đặt extension gd
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd
+
+# Cài đặt PDO MySQL
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Cài đặt phần mở rộng SOAP
+RUN docker-php-ext-install soap
+
+# Cài đặt phần mở rộng XSL
+RUN apt-get install -y libxslt1-dev && \
+    docker-php-ext-install xsl
+
+# Cài đặt phần mở rộng Sockets
+RUN docker-php-ext-install sockets
+
+RUN echo "memory_limit = 256M" > /usr/local/etc/php/conf.d/memory-limit.ini
+
+# Dọn dẹp
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Sao chép tệp composer.json, script cài đặt và ứng dụng vào thư mục html
+COPY ./php/composer.json /var/www/html/
+COPY ./php/install-magento.sh /var/www/html/
+COPY ./app /var/www/html/
