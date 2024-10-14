@@ -3,8 +3,8 @@
 ## Giới thiệu
  - Các file trong branch này được sử dụng để đóng gói hoàn toàn việc cài đặt magento trên docker, được tách bạch hoàn toàn so với local
  - Vì vậy, bạn sẽ không cần phải cài cài đặt bất cứ công cụ nào trên máy của mình cả - ngoại trừ [Docker](https://docs.docker.com/engine/install/)!
-## Cài đặt Magento:
-- chuyển đến thư mục chứa repo của bạn
+## Cài đặt Magento
+- Chuyển đến thư mục chứa repo của bạn
 - Công việc tiên quyết: tạo file .env:
     - Tạo 1 file có tên là .env ở thư mục hiện tại (thư mục gốc của repo)
     - copy mã từ file .env.example -> .env
