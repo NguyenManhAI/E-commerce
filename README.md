@@ -8,7 +8,7 @@
 - Công việc tiên quyết: tạo file .env:
     - Tạo 1 file có tên là .env ở thư mục hiện tại (thư mục gốc của repo)
     - copy mã từ file .env.example -> .env
-    - Lần lượt thay thế giá trị của USERNAME_MAGENTO_KEY và PASSWORD_MAGENTO_KEY bằng Public Key và Private Key của magento authentication keys. Hướng dẫn chi tiết [ở đây](#tạo-acess-key-magento) 
+    - Lần lượt thay thế giá trị của USERNAME_MAGENTO_KEY và PASSWORD_MAGENTO_KEY bằng Public Key và Private Key của magento authentication keys và điền giá trị của các biến còn lại. Hướng dẫn chi tiết lấy magento keys [ở đây](#tạo-acess-key-magento) 
 - Thực hiện lần lược các công việc/lệnh sau:
 1. chạy ```docker compose build```
 2. chạy ```docker compose up -d```

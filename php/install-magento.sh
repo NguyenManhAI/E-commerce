@@ -1,8 +1,3 @@
-MYSQL_USER=$1
-MYSQL_PASSWORD=$2
-MYSQL_DATABASE=$3
-USERNAME_MAGENTO_KEY=$4
-PASSWORD_MAGENTO_KEY=$5
 
 # tạo thư mục magento trong composer:/app
 mkdir -p ./magento && chmod -R u+w ./magento && rm -rf ./magento/* && rm -rf ./magento/.[!.]*
@@ -28,11 +23,11 @@ bin/magento setup:install \
 --db-name=$MYSQL_DATABASE \
 --db-user=$MYSQL_USER \
 --db-password=$MYSQL_PASSWORD \
---admin-firstname=admin \
---admin-lastname=admin \
---admin-email=admin@admin.com \
---admin-user=admin \
---admin-password=admin123 \
+--admin-firstname=$ADMIN_FIRSTNAME \
+--admin-lastname=$ADMIN_LASTNAME \
+--admin-email=$ADMIN_EMAIL \
+--admin-user=$ADMIN_USER \
+--admin-password=$ADMIN_PASSWORD \
 --language=en_US \
 --currency=USD \
 --timezone=Asia/Ho_Chi_Minh \
