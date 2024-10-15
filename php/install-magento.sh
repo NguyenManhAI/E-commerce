@@ -37,7 +37,7 @@ bin/magento setup:install \
 --currency=USD \
 --timezone=Asia/Ho_Chi_Minh \
 --use-rewrites=1 \
---search-engine=elasticsearch8 \
+--search-engine=elasticsearch7 \
 --elasticsearch-host=elasticsearch \
 --elasticsearch-port=9200 \
 --elasticsearch-index-prefix=magento2 \
