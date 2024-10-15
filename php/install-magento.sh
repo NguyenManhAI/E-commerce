@@ -37,3 +37,7 @@ bin/magento setup:install \
 --elasticsearch-port=9200 \
 --elasticsearch-index-prefix=magento2 \
 --elasticsearch-timeout=15
+
+# tắt xác thực 2 bước
+bin/magento module:disable Magento_AdminAdobeImsTwoFactorAuth Magento_TwoFactorAuth
+bin/magento cache:flush 

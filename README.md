@@ -12,10 +12,13 @@
 - Thực hiện lần lược các công việc/lệnh sau:
 1. chạy ```docker compose build```
 2. chạy ```docker compose up -d```
-3. Đợi khoảng 15' -> Done!
+3. chạy ```docker compose exec php bash -c "composer install && ./install-magento.sh"```, cài đặt và setup magento, lưu ý rằng cần lưu lại admin uri tại bước này.
+![admin-uri](image/admin-uri.png)
+4. Đợi khoảng 15' -> Done!
 ## Kiểm tra cài đặt
 - Vào đường link http://localhost:8080, nếu xuất hiện giao diện bên dưới thì ok
 ![magento](image/image.png)
+- Vào admin để trải nghiệm. VD admin uri của bạn là /admin_88c1kjr thì nhập http://localhost:8080/admin_88c1kjr sau đó đăng nhập
 ## Tạo Acess Key Magento
 Thực hiện lần lượt các bước sau:
 1. Vào [Commercemarketplace](https://commercemarketplace.adobe.com/)

@@ -20,8 +20,8 @@ services:
     volumes:
       - var-www-html:/var/www/html
     working_dir: /var/www/html
-    command: >
-      sh -c "composer install && ./install-magento.sh"
+    # command: >
+    #   sh -c "composer install && ./install-magento.sh"
     depends_on:
       nginx:
         condition: service_started
