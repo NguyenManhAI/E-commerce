@@ -25,13 +25,16 @@ services:
       USERNAME_MAGENTO_KEY: ${USERNAME_MAGENTO_KEY}
       PASSWORD_MAGENTO_KEY: ${PASSWORD_MAGENTO_KEY}
     working_dir: /var/www/html
-    command: >
-      sh -c "composer install && 
-      ./install-magento.sh $MYSQL_USER $MYSQL_PASSWORD $MYSQL_DATABASE $USERNAME_MAGENTO_KEY $PASSWORD_MAGENTO_KEY"
+    # command: >
+    #   sh -c "composer install && 
+    #   ./install-magento.sh $MYSQL_USER $MYSQL_PASSWORD $MYSQL_DATABASE $USERNAME_MAGENTO_KEY $PASSWORD_MAGENTO_KEY"
     depends_on:
-      - nginx
-      - mysql
-      - elasticsearch
+      nginx:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
     env_file:
       - .env
 

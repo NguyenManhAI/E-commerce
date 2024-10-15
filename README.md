@@ -11,7 +11,7 @@
     - Lần lượt thay thế giá trị của USERNAME_MAGENTO_KEY và PASSWORD_MAGENTO_KEY bằng Public Key và Private Key của magento authentication keys. Hướng dẫn chi tiết [ở đây](#tạo-acess-key-magento) 
 - Thực hiện lần lược các công việc/lệnh sau:
 1. chạy ```docker compose build```
-2. chạy ```docker compose up```
+2. chạy ```docker compose up -d```
 3. Đợi khoảng 15' -> Done!
 ## Kiểm tra cài đặt
 - Vào đường link http://localhost:8080, nếu xuất hiện giao diện bên dưới thì ok
