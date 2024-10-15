@@ -19,15 +19,9 @@ services:
       - "9000:9000"
     volumes:
       - var-www-html:/var/www/html
-    environment:
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      USERNAME_MAGENTO_KEY: ${USERNAME_MAGENTO_KEY}
-      PASSWORD_MAGENTO_KEY: ${PASSWORD_MAGENTO_KEY}
     working_dir: /var/www/html
     command: >
-      sh -c "composer install && 
-      ./install-magento.sh $MYSQL_USER $MYSQL_PASSWORD $MYSQL_DATABASE $USERNAME_MAGENTO_KEY $PASSWORD_MAGENTO_KEY"
+      sh -c "composer install && ./install-magento.sh"
     depends_on:
       nginx:
         condition: service_started
@@ -41,11 +35,6 @@ services:
   mysql:
     image: mysql:8.0
     container_name: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     # volumes:
     #   - ./mysql:/var/lib/mysql
     ports:
