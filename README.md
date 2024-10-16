@@ -12,7 +12,7 @@
 - Thực hiện lần lược các công việc/lệnh sau:
 1. chạy ```docker compose build```
 2. chạy ```docker compose up -d```
-3. chạy ```docker compose exec php bash -c "composer install && ./install-magento.sh"```, cài đặt và setup magento, lưu ý rằng cần lưu lại admin uri tại bước này.<br>
+3. chạy ```docker compose exec php bash -c "./install-magento.sh"```, cài đặt và setup magento, lưu ý rằng cần lưu lại admin uri tại bước này.<br>
 ![admin-uri](image/admin-uri.png)
 4. Đợi khoảng 15' -> Done!
 ## Kiểm tra cài đặt

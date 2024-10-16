@@ -5,10 +5,10 @@ mkdir -p ./magento && chmod -R u+w ./magento && rm -rf ./magento/* && rm -rf ./m
 
 composer config --no-interaction allow-plugins.php-http/discovery true
 
-# thiết lập username và password (authentication keys)
+# Set up username and password (authentication keys)
 composer config --global http-basic.repo.magento.com $USERNAME_MAGENTO_KEY $PASSWORD_MAGENTO_KEY
 
-# tạo project magento
+# creat project magento
 composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.4.7-p3 magento
 
 cd magento
@@ -32,12 +32,20 @@ bin/magento setup:install \
 --currency=USD \
 --timezone=Asia/Ho_Chi_Minh \
 --use-rewrites=1 \
---search-engine=elasticsearch7 \
---elasticsearch-host=elasticsearch \
---elasticsearch-port=9200 \
---elasticsearch-index-prefix=magento2 \
---elasticsearch-timeout=15
+--search-engine=opensearch \
+--opensearch-host=opensearch \
+--opensearch-port=9200 \
+--opensearch-index-prefix=magento2 \
+--opensearch-timeout=15
 
-# tắt xác thực 2 bước
+# Turn off 2-step authentication
 bin/magento module:disable Magento_AdminAdobeImsTwoFactorAuth Magento_TwoFactorAuth
 bin/magento cache:flush 
+
+# install cron job
+bin/magento cron:install --force
+
+# execute reindex required
+bin/magento cron:run
+# bin/magento indexer:reindex
+

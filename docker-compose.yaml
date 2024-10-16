@@ -13,21 +13,22 @@ services:
     # image: php:8.2-fpm
     build: 
       context: .
-      dockerfile: /php/dockerfile
+      dockerfile: ./php/dockerfile
     container_name: php
     ports:
       - "9000:9000"
     volumes:
       - var-www-html:/var/www/html
-    working_dir: /var/www/html
+      # - ./php/install-magento.sh:/var/www/html/install-magento.sh
+    # working_dir: /var/www/html
     # command: >
-    #   sh -c "composer install && ./install-magento.sh"
+    #   sh -c "chmod +x ./install-magento.sh"
     depends_on:
       nginx:
         condition: service_started
       mysql:
         condition: service_healthy
-      elasticsearch:
+      opensearch:
         condition: service_healthy
     env_file:
       - .env
@@ -47,25 +48,30 @@ services:
       start_period: 30s
     env_file:
       - .env
-
-  elasticsearch:
-    image: elasticsearch:8.11.0
-    container_name: elasticsearch
+  
+  opensearch:
+    image: opensearchproject/opensearch:2.12.0
+    container_name: opensearch
     environment:
       - discovery.type=single-node
-      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-      - xpack.security.enabled=false
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - bootstrap.memory_lock=true
+      - plugins.security.disabled=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
+    #   - opensearch-data:/usr/share/opensearch/data
     ports:
       - "9200:9200"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200/"]
+      test: ["CMD", "curl", "--silent", "--fail", "http://localhost:9200/"]
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 30s
-    # volumes:
-    #   - ./elastic:/usr/share/elasticsearch/data
     env_file:
       - .env
+
 volumes:
   var-www-html:
