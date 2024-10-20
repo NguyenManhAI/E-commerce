@@ -19,10 +19,6 @@ services:
       - "9000:9000"
     volumes:
       - var-www-html:/var/www/html
-      # - ./php/install-magento.sh:/var/www/html/install-magento.sh
-    # working_dir: /var/www/html
-    # command: >
-    #   sh -c "chmod +x ./install-magento.sh"
     depends_on:
       nginx:
         condition: service_started
