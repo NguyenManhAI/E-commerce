@@ -19,7 +19,6 @@ services:
       - "9000:9000"
     volumes:
       - var-www-html:/var/www/html
-      # - ./magento:/var/www/html/magento
     depends_on:
       nginx:
         condition: service_started
