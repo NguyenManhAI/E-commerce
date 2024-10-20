@@ -3,6 +3,7 @@
 ## Giới thiệu
  - Các file trong branch này được sử dụng để đóng gói hoàn toàn việc cài đặt magento trên docker, được tách bạch hoàn toàn so với local
  - Vì vậy, bạn sẽ không cần phải cài cài đặt bất cứ công cụ nào trên máy của mình cả - ngoại trừ [Docker](https://docs.docker.com/engine/install/)!
+ - 
 ## Cài đặt Magento
 - Chuyển đến thư mục chứa repo của bạn
 - Công việc tiên quyết: tạo file .env:
@@ -27,5 +28,7 @@ Thực hiện lần lượt các bước sau:
 4. Xuất hiện 1 số tùy chọn, vào Access Key
 5. Tạo Acess Key bằng cách bấm vào Create A New Access Key hoặc sử dụng cái đã có sẵn
 6. Copy Public và Private Key và sử dụng.
-
-
+## Phát triển:
+- Luôn thực hiện:
+    - Trước khi push github: ```docker compose exec mysql bash -c "./backup.sh"```
+    - Sau khi pull github: ```docker compose exec mysql bash -c "./restore.sh"```
