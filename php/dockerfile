@@ -67,6 +67,6 @@ WORKDIR /var/www/html
 # Thêm lệnh thực thi cho install-magento.sh
 RUN chmod +x ./install-magento.sh
 
-# COPY ./app /var/www/html/
+# COPY ./magento /var/www/html/magento
 
 
