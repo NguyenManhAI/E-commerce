@@ -3,6 +3,9 @@
 ## Giới thiệu
  - Các file trong branch này được sử dụng để đóng gói hoàn toàn việc cài đặt magento trên docker, được tách bạch hoàn toàn so với local
  - Vì vậy, bạn sẽ không cần phải cài cài đặt bất cứ công cụ nào trên máy của mình cả - ngoại trừ [Docker](https://docs.docker.com/engine/install/)!
+# Config github
+```git config --global core.autocrlf false```
+```git config --system core.longpaths true```
 # Cài đặt sẵn
 ## Chạy các lệnh sau để vào magento
 1. chạy ```docker compose build```
@@ -18,9 +21,6 @@
 ## Chạy
 - Vào đường link http://localhost:8080
 # Cài đặt từ đầu
-## Config github
-```git config --global core.autocrlf false```
-```git config --system core.longpaths true```
 ## Cài đặt Magento
 - Chuyển đến thư mục chứa repo của bạn
 - Công việc tiên quyết: tạo file .env:
