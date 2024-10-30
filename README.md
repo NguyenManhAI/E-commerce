@@ -3,7 +3,8 @@
 ## Giới thiệu
  - Các file trong branch này được sử dụng để đóng gói hoàn toàn việc cài đặt magento trên docker, được tách bạch hoàn toàn so với local
  - Vì vậy, bạn sẽ không cần phải cài cài đặt bất cứ công cụ nào trên máy của mình cả - ngoại trừ [Docker](https://docs.docker.com/engine/install/)!
- - 
+## Config github
+```git config --global core.autocrlf true```
 ## Cài đặt Magento
 - Chuyển đến thư mục chứa repo của bạn
 - Công việc tiên quyết: tạo file .env:
@@ -31,4 +32,7 @@ Thực hiện lần lượt các bước sau:
 ## Phát triển:
 - Luôn thực hiện:
     - Trước khi push github: ```docker compose exec mysql bash -c "./backup.sh"```
-    - Sau khi pull github: ```docker compose exec mysql bash -c "./restore.sh"```
+    - Sau khi pull github: 
+        1. ```docker compose exec mysql bash -c "./restore.sh"```
+        2. ```docker compose exec php ./magento/bin/magento setup:upgrade```
+## Sample data

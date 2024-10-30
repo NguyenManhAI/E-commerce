@@ -6,20 +6,24 @@ RUN apt-get update
 
 # Cài đặt các extension cần thiết, bao gồm mysqli
 RUN docker-php-ext-install mysqli && \
+    apt-get update && \
     apt-get install -y libcurl4-openssl-dev && \
     docker-php-ext-install curl
 
 # Cài đặt các gói ICU và các phần mở rộng PHP
-RUN apt-get install -y libicu-dev \
+RUN apt-get update && \
+    apt-get install -y libicu-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
 
 # Cài đặt bcmath và zip
-RUN apt-get install -y libzip-dev \
+RUN apt-get update && \
+    apt-get install -y libzip-dev \
     && docker-php-ext-install bcmath zip
 
 # Cài đặt các thư viện cần thiết
-RUN apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -39,7 +43,8 @@ RUN docker-php-ext-install pdo pdo_mysql
 RUN docker-php-ext-install soap
 
 # Cài đặt phần mở rộng XSL
-RUN apt-get install -y libxslt1-dev && \
+RUN apt-get update && \
+    apt-get install -y libxslt1-dev && \
     docker-php-ext-install xsl
 
 # Cài đặt phần mở rộng Sockets
@@ -51,16 +56,16 @@ RUN echo "memory_limit = 256M" > /usr/local/etc/php/conf.d/memory-limit.ini
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #Cài đặt cron
-RUN apt-get install -y cron
+RUN apt-get update && apt-get install -y cron
 
 # Khởi động cron
 RUN service cron start
 
 # Cài đặt vim
-RUN apt-get install -y vim
+RUN apt-get update && apt-get install -y vim
 
 # Cài đặt dos2unix
-RUN apt-get install -y dos2unix
+RUN apt-get update && apt-get install -y dos2unix
 
 # Tạo install-magento.sh
 COPY ./php/install-magento.sh /var/www/html/
@@ -69,7 +74,6 @@ WORKDIR /var/www/html
 
 # chuyển file về định dạng Unix
 RUN dos2unix ./install-magento.sh
-
 # Thêm lệnh thực thi cho install-magento.sh
 RUN chmod +x ./install-magento.sh
 
