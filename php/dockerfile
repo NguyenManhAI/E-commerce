@@ -67,6 +67,9 @@ RUN apt-get update && apt-get install -y vim
 # Cài đặt dos2unix
 RUN apt-get update && apt-get install -y dos2unix
 
+#cài đặt rsync
+RUN apt-get update && apt-get install -y rsync
+
 # Tạo install-magento.sh
 COPY ./php/install-magento.sh /var/www/html/
 

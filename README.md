@@ -3,8 +3,22 @@
 ## Giới thiệu
  - Các file trong branch này được sử dụng để đóng gói hoàn toàn việc cài đặt magento trên docker, được tách bạch hoàn toàn so với local
  - Vì vậy, bạn sẽ không cần phải cài cài đặt bất cứ công cụ nào trên máy của mình cả - ngoại trừ [Docker](https://docs.docker.com/engine/install/)!
+# Cài đặt sẵn
+## Chạy các lệnh sau để vào magento
+1. chạy ```docker compose build```
+2. chạy ```docker compose up -d```
+3. Vào đường link http://localhost:8080
+## Phát triển
+1. Khi pull (nhận các thay đổi của nhóm), chạy
+    - ```docker cp ./magento/. php:/var/www/html/magento``` để cập nhật code, ảnh,...
+    - ```docker compose exec mysql bash -c "./restore.sh"``` để cập nhật database
+2. Khi push (chia sẻ thay đổi cho nhóm), chạy
+    - ```docker cp php:/var/www/html/magento/. ./magento```
+    - ```docker compose exec mysql bash -c "./backup.sh"```
+# Cài đặt từ đầu
 ## Config github
-```git config --global core.autocrlf true```
+```git config --global core.autocrlf false```
+```git config --system core.longpaths true```
 ## Cài đặt Magento
 - Chuyển đến thư mục chứa repo của bạn
 - Công việc tiên quyết: tạo file .env:
@@ -30,9 +44,17 @@ Thực hiện lần lượt các bước sau:
 5. Tạo Acess Key bằng cách bấm vào Create A New Access Key hoặc sử dụng cái đã có sẵn
 6. Copy Public và Private Key và sử dụng.
 ## Phát triển:
-- Luôn thực hiện:
+- Luôn thực hiện: (để cập nhật database và magento)
     - Trước khi push github: ```docker compose exec mysql bash -c "./backup.sh"```
     - Sau khi pull github: 
         1. ```docker compose exec mysql bash -c "./restore.sh"```
         2. ```docker compose exec php ./magento/bin/magento setup:upgrade```
+    - Chạy lệnh ```rsync -av --delete ./magento/ /magento``` để update magento trên local
 ## Sample data
+1. Vào ```docker compose exec php bash```, vào folder magento ```cd magento```
+2. ```php bin/magento deploy:mode:set developer```
+3. ```rm -rf generated/code/* generated/metadata/*```
+4. ```php bin/magento sampledata:deploy```
+5. ```php -d memory_limit=512M bin/magento setup:upgrade```
+6. ```php bin/magento cache:clean && php bin/magento cache:flush```
+
