@@ -70,15 +70,16 @@ RUN apt-get update && apt-get install -y dos2unix
 #cài đặt rsync
 RUN apt-get update && apt-get install -y rsync
 
-# Tạo install-magento.sh
+# Các file sh
 COPY ./php/install-magento.sh /var/www/html/
+COPY ./php/writable-permission.sh /var/www/html/
 
 WORKDIR /var/www/html
 
 # chuyển file về định dạng Unix
-RUN dos2unix ./install-magento.sh
+RUN dos2unix ./install-magento.sh writable-permission.sh
 # Thêm lệnh thực thi cho install-magento.sh
-RUN chmod +x ./install-magento.sh
+RUN chmod +x ./install-magento.sh writable-permission.sh
 
 # COPY ./magento /var/www/html/magento
 
