@@ -8,6 +8,7 @@
 1. chạy ```docker compose build```
 2. chạy ```docker compose up -d```
 ## Phát triển
+- Vào Terminal Run as administrator, vào đường dẫn dự án
 1. Khi pull (nhận các thay đổi của nhóm), chạy
     - ```docker cp ./magento/. php:/var/www/html/magento``` để cập nhật code, ảnh,...
     - ```docker compose exec mysql bash -c "./restore.sh"``` để cập nhật database
