@@ -21,6 +21,9 @@
     - ```docker compose exec mysql bash -c "./backup.sh"```
 ## Chạy
 - Vào đường link http://localhost:8080
+## Các loại lỗi có thể gặp:
+1. Không add sản phẩm được vào cart, vào 1 số trang admin không hiện nội dung, chỉ hiện đường dẫn html: 
+    - chạy ```rm -rf pub/static/* && bin/magento setup:static-content:deploy -f``` trên trong magento container php
 # Cài đặt từ đầu
 ## Cài đặt Magento
 - Chuyển đến thư mục chứa repo của bạn
