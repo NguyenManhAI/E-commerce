@@ -24,6 +24,10 @@
 ## Các loại lỗi có thể gặp:
 1. Không add sản phẩm được vào cart, vào 1 số trang admin không hiện nội dung, chỉ hiện đường dẫn html: 
     - chạy ```rm -rf pub/static/* && bin/magento setup:static-content:deploy -f``` trên trong magento container php
+## Xóa sample data, đưa về trạng thái ban đầu:
+1. ```bin/magento sampledata:remove```
+2. ```bin/magento setup:upgrade```
+3. ```bin/magento cache:clean && bin/magento cache:flush```
 # Cài đặt từ đầu
 ## Cài đặt Magento
 - Chuyển đến thư mục chứa repo của bạn
