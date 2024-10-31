@@ -1,1 +1,9 @@
-/var/www/html/magento/vendor/magento/module-checkout/view/frontend/web/js/model/shipping-save-processor/payload-extender.js
+define([], function () {
+    'use strict';
+
+    return function (payload) {
+        payload.addressInformation['extension_attributes'] = {};
+
+        return payload;
+    };
+});

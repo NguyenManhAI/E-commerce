@@ -1,1 +1,12 @@
-/var/www/html/magento/vendor/magento/module-checkout/view/frontend/web/js/model/payment/method-list.js
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+define([
+    'ko'
+], function (ko) {
+    'use strict';
+
+    return ko.observableArray([]);
+});

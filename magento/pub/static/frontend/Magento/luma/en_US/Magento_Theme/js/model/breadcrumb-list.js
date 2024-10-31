@@ -1,1 +1,10 @@
-/var/www/html/magento/vendor/magento/module-theme/view/frontend/web/js/model/breadcrumb-list.js
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+define([], function () {
+    'use strict';
+
+    return [];
+});

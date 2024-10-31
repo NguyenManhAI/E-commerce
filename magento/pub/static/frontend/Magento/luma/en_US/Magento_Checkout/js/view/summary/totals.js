@@ -1,1 +1,19 @@
-/var/www/html/magento/vendor/magento/module-checkout/view/frontend/web/js/view/summary/totals.js
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+define([
+    'Magento_Checkout/js/view/summary/abstract-total'
+], function (Component) {
+    'use strict';
+
+    return Component.extend({
+        /**
+         * @return {*}
+         */
+        isDisplayed: function () {
+            return this.isFullMode();
+        }
+    });
+});

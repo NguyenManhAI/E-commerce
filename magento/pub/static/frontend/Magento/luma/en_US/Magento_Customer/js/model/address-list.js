@@ -1,1 +1,16 @@
-/var/www/html/magento/vendor/magento/module-customer/view/frontend/web/js/model/address-list.js
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @api
+ */
+define([
+    'ko',
+    './customer-addresses'
+], function (ko, defaultProvider) {
+    'use strict';
+
+    return ko.observableArray(defaultProvider.getAddressItems());
+});

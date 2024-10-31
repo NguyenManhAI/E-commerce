@@ -1,1 +1,19 @@
-/var/www/html/magento/vendor/magento/module-ui/view/base/web/templates/content/content.html
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div html="getContentUnsanitizedHtml()"
+     css="$data.additionalClasses"
+     visible="visible"></div>
+
+<div data-role="spinner"
+     class="admin__data-grid-loading-mask"
+     visible="loading"
+     if="showSpinner">
+    <div class="spinner">
+        <span repeat="8"></span>
+    </div>
+</div>

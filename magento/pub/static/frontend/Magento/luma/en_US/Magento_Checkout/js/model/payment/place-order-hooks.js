@@ -1,1 +1,13 @@
-/var/www/html/magento/vendor/magento/module-checkout/view/frontend/web/js/model/payment/place-order-hooks.js
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+define([], function () {
+    'use strict';
+
+    return {
+        requestModifiers: [],
+        afterRequestListeners: []
+    };
+});

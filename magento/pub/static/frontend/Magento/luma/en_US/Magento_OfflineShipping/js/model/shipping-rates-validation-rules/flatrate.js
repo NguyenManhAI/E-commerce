@@ -1,1 +1,21 @@
-/var/www/html/magento/vendor/magento/module-offline-shipping/view/frontend/web/js/model/shipping-rates-validation-rules/flatrate.js
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+define([], function () {
+    'use strict';
+
+    return {
+        /**
+         * @return {Object}
+         */
+        getRules: function () {
+            return {
+                'country_id': {
+                    'required': true
+                }
+            };
+        }
+    };
+});
