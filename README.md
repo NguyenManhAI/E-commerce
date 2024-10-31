@@ -12,10 +12,10 @@
 2. chạy ```docker compose up -d```
 ## Phát triển
 - Vào Terminal Run as administrator, vào đường dẫn dự án
-1. Khi pull lần đầu, chạy ```docker compose exec php bash -c "./writable-permission.sh"``` để cấp quyền cho các tệp magento
-2. Khi pull (nhận các thay đổi của nhóm), chạy
+1. Khi pull (nhận các thay đổi của nhóm), chạy
     - ```docker cp ./magento/. php:/var/www/html/magento``` để cập nhật code, ảnh,...
     - ```docker compose exec mysql bash -c "./restore.sh"``` để cập nhật database
+2. Khi pull lần đầu, chạy ```docker compose exec php bash -c "./writable-permission.sh"``` để cấp quyền cho các tệp magento
 3. Khi push (chia sẻ thay đổi cho nhóm), chạy
     - ```docker cp php:/var/www/html/magento/. ./magento```
     - ```docker compose exec mysql bash -c "./backup.sh"```
