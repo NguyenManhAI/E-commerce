@@ -18,7 +18,7 @@ chown -R :www-data . # Ubuntu
 chmod u+x bin/magento
 
 bin/magento setup:install \
---base-url=http://localhost:8080/ \
+--base-url=http://localhost:8000/ \
 --db-host=mysql \
 --db-name=$MYSQL_DATABASE \
 --db-user=$MYSQL_USER \
@@ -28,8 +28,8 @@ bin/magento setup:install \
 --admin-email=$ADMIN_EMAIL \
 --admin-user=$ADMIN_USER \
 --admin-password=$ADMIN_PASSWORD \
---language=en_US \
---currency=USD \
+--language=vi_VN \
+--currency=VND \
 --timezone=Asia/Ho_Chi_Minh \
 --use-rewrites=1 \
 --search-engine=opensearch \

@@ -294,6 +294,7 @@ return array(
     '57c8854885edbd9d85f21fffc36ebecd' => $vendorDir . '/magento/module-re-captcha-webapi-rest/registration.php',
     'b023fd11134400033a2200c4032efd82' => $vendorDir . '/magento/module-securitytxt/registration.php',
     '87bb82aba4e6954227316088ec049d42' => $vendorDir . '/magento/module-translation/registration.php',
+    '6b5b87bda6fedcf6ef8605219c8b67f2' => $vendorDir . '/mageplaza/module-core/registration.php',
     '9b38cf48e83f5d8f60375221cd213eee' => $vendorDir . '/phpstan/phpstan/bootstrap.php',
     'a3b8fb13a112e3be232ab3c07b8a884f' => $vendorDir . '/codeception/module-sequence/src/Codeception/Util/sq.php',
     '07d7f1a47144818725fd8d91a907ac57' => $vendorDir . '/laminas/laminas-diactoros/src/functions/create_uploaded_file.php',
@@ -441,5 +442,7 @@ return array(
     'f1c1523a4c5d520b50bffc4a75ea5a5c' => $vendorDir . '/magento/module-tax-sample-data/registration.php',
     'f3d4617c4b29f1082289d89745685dad' => $vendorDir . '/magento/module-widget-sample-data/registration.php',
     '759d958743dba8d926c9111b82afe3e9' => $vendorDir . '/magento/module-wishlist-sample-data/registration.php',
+    'fafc74b18998cb7256cedcfe0ee5fcb3' => $vendorDir . '/mageplaza/magento-2-vietnamese-language-pack/registration.php',
+    'a77049f7f3ca4c78b9e3635c8f857d84' => $vendorDir . '/mageplaza/module-smtp/registration.php',
     'b4cf39431a4b949eea8aa69ebb3d39da' => $baseDir . '/app/etc/NonComposerComponentRegistration.php',
 );

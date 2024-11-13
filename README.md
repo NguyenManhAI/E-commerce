@@ -20,10 +20,12 @@
     - ```docker cp php:/var/www/html/magento/. ./magento```
     - ```docker compose exec mysql bash -c "./backup.sh"```
 ## Chạy
-- Vào đường link http://localhost:8080
+- Vào đường link http://localhost:8000
 ## Các loại lỗi có thể gặp:
 1. Không add sản phẩm được vào cart, vào 1 số trang admin không hiện nội dung, chỉ hiện đường dẫn html: 
     - chạy ```rm -rf pub/static/* && bin/magento setup:static-content:deploy -f``` trên trong magento container php
+2. Không tìm kiếm được:
+    - chạy ```bin/magento indexer:reindex```
 ## Xóa sample data, đưa về trạng thái ban đầu:
 1. ```bin/magento sampledata:remove```
 2. ```bin/magento setup:upgrade```
@@ -42,9 +44,9 @@
 ![admin-uri](image/admin-uri.png)
 4. Đợi khoảng 15' -> Done!
 ## Kiểm tra cài đặt
-- Vào đường link http://localhost:8080, nếu xuất hiện giao diện bên dưới thì ok
+- Vào đường link http://localhost:8000, nếu xuất hiện giao diện bên dưới thì ok
 ![magento](image/image.png)
-- Vào admin để trải nghiệm. VD admin uri của bạn là /admin_88c1kjr thì nhập http://localhost:8080/admin_88c1kjr sau đó đăng nhập
+- Vào admin để trải nghiệm. VD admin uri của bạn là /admin_88c1kjr thì nhập http://localhost:8000/admin_88c1kjr sau đó đăng nhập
 ## Tạo Acess Key Magento
 Thực hiện lần lượt các bước sau:
 1. Vào [Commercemarketplace](https://commercemarketplace.adobe.com/)
