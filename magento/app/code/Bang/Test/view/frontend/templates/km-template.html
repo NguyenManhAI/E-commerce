@@ -1,0 +1,15 @@
+<h2 data-bind="text: title"></h2>
+<p data-bind="html: content"></p>
+<div data-bind="css: {
+    'primary': isPrimary,
+    'secondary': !isPrimary
+}">
+    <button data-bind="attr: {
+        type: 'button',
+        title: btnText
+    }, class: 'action',
+    css: {
+        'primary': isPrimary,
+        'secondary': !isPrimary
+    }"><span data-bind="text: btnText"></span></button>
+</div>

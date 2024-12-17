@@ -3,6 +3,32 @@
 ## Giới thiệu
  - Các file trong branch này được sử dụng để đóng gói hoàn toàn việc cài đặt magento trên docker, được tách bạch hoàn toàn so với local
  - Vì vậy, bạn sẽ không cần phải cài cài đặt bất cứ công cụ nào trên máy của mình cả - ngoại trừ [Docker](https://docs.docker.com/engine/install/)!
+# Config github
+1. Tránh tự động thay đổi kí hiệu xuống dòng ```git config --global core.autocrlf false```
+2. Cho phép xử lý các đường dẫn dài ```git config --system core.longpaths true```
+# Cài đặt sẵn
+## Chạy các lệnh sau để vào magento
+1. chạy ```docker compose build```
+2. chạy ```docker compose up -d```
+## Phát triển
+- Vào Terminal Run as administrator, vào đường dẫn dự án
+1. Khi pull (nhận các thay đổi của nhóm), chạy
+    - ```docker cp ./magento/. php:/var/www/html/magento``` để cập nhật code, ảnh,...
+    - ```docker compose exec mysql bash -c "./restore.sh"``` để cập nhật database
+2. Khi pull lần đầu, chạy ```docker compose exec php bash -c "./writable-permission.sh"``` để cấp quyền cho các tệp magento (sau khi cop xong magento từ local vào container)
+3. Khi push (chia sẻ thay đổi cho nhóm), chạy
+    - ```docker cp php:/var/www/html/magento/. ./magento```
+    - ```docker compose exec mysql bash -c "./backup.sh"```
+## Chạy
+- Vào đường link http://localhost:8080
+## Các loại lỗi có thể gặp:
+1. Không add sản phẩm được vào cart, vào 1 số trang admin không hiện nội dung, chỉ hiện đường dẫn html: 
+    - chạy ```rm -rf pub/static/* && bin/magento setup:static-content:deploy -f``` trên trong magento container php
+## Xóa sample data, đưa về trạng thái ban đầu:
+1. ```bin/magento sampledata:remove```
+2. ```bin/magento setup:upgrade```
+3. ```bin/magento cache:clean && bin/magento cache:flush```
+# Cài đặt từ đầu
 ## Cài đặt Magento
 - Chuyển đến thư mục chứa repo của bạn
 - Công việc tiên quyết: tạo file .env:
@@ -12,7 +38,7 @@
 - Thực hiện lần lược các công việc/lệnh sau:
 1. chạy ```docker compose build```
 2. chạy ```docker compose up -d```
-3. chạy ```docker compose exec php bash -c "composer install && ./install-magento.sh"```, cài đặt và setup magento, lưu ý rằng cần lưu lại admin uri tại bước này.<br>
+3. chạy ```docker compose exec php bash -c "./install-magento.sh"```, cài đặt và setup magento, lưu ý rằng cần lưu lại admin uri tại bước này.<br>
 ![admin-uri](image/admin-uri.png)
 4. Đợi khoảng 15' -> Done!
 ## Kiểm tra cài đặt
@@ -27,5 +53,18 @@ Thực hiện lần lượt các bước sau:
 4. Xuất hiện 1 số tùy chọn, vào Access Key
 5. Tạo Acess Key bằng cách bấm vào Create A New Access Key hoặc sử dụng cái đã có sẵn
 6. Copy Public và Private Key và sử dụng.
-
+## Phát triển:
+- Luôn thực hiện: (để cập nhật database và magento)
+    - Trước khi push github: ```docker compose exec mysql bash -c "./backup.sh"```
+    - Sau khi pull github: 
+        1. ```docker compose exec mysql bash -c "./restore.sh"```
+        2. ```docker compose exec php ./magento/bin/magento setup:upgrade```
+    - Chạy lệnh ```rsync -av --delete ./magento/ /magento``` để update magento trên local
+## Sample data
+1. Vào ```docker compose exec php bash```, vào folder magento ```cd magento```
+2. ```php bin/magento deploy:mode:set developer```
+3. ```rm -rf generated/code/* generated/metadata/*```
+4. ```php bin/magento sampledata:deploy```
+5. ```php -d memory_limit=512M bin/magento setup:upgrade```
+6. ```php bin/magento cache:clean && php bin/magento cache:flush```
 

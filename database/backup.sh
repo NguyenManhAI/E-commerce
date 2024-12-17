@@ -1,0 +1,1 @@
+mysqldump -u root -p$MYSQL_PASSWORD $MYSQL_DATABASE > /dump/db_dump.sql
