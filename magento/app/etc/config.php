@@ -377,6 +377,11 @@ return [
         'PayPal_BraintreeCustomerBalance' => 1,
         'PayPal_BraintreeGiftCardAccount' => 1,
         'PayPal_BraintreeGiftWrapping' => 1,
-        'PayPal_BraintreeGraphQl' => 1
+        'PayPal_BraintreeGraphQl' => 1,
+        'Bang_Weather' => 1,
+        'Bang_News' => 1,
+        'Bang_Currency' => 1,
+        'Bang_Test' => 1,
+        'Vendor_Module' => 0
     ]
 ];
