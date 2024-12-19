@@ -18,7 +18,7 @@ chown -R :www-data . # Ubuntu
 chmod u+x bin/magento
 
 bin/magento setup:install \
---base-url=http://localhost:8000/ \
+--base-url=http://$SERVER_IP:8000/ \
 --db-host=mysql \
 --db-name=$MYSQL_DATABASE \
 --db-user=$MYSQL_USER \
