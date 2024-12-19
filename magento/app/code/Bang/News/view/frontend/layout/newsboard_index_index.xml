@@ -7,7 +7,7 @@
     <body>
         <referenceContainer name="content">
             <block name="news" class="Bang\News\Block\Report"
-                   template="Bang_News::news.phtml"/>
+                   template="Bang_News::news.phtml" cacheable="false"/>
         </referenceContainer>
     </body>
 </page>
