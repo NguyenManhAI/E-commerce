@@ -1,0 +1,57 @@
+<?php
+    $page = (int)$this->getRequest()->getParam('page', 1);
+    $newsData = $block->getNews($page);
+    $newsList = $newsData['items'];
+    $totalPages = $newsData['totalPages'];
+    $currentPage = $newsData['currentPage'];
+    $cnt = 0;
+?>
+<header>
+    <h3>Tổng hợp tin tức kinh doanh</h3>
+</header>
+<?php if(is_null($newsList)||count($newsList) === 0): ?>
+    <div class="error">
+        <span>Không thể hiển thị thông tin.</span>
+    </div>
+<?php else : ?>
+    <div class="container">
+        <?php foreach($newsList as $news): ?>
+            <div class="<?php echo ($cnt % 2 == 0) ? 'blog-card' : 'blog-card alt' ?>">
+                <div class="meta">
+                    <span><?php echo $news->getImageUrl()?></span>
+                    <div class="photo" style="background-image: url(<?php echo $news->getImageUrl()?>);"></div>
+                </div>
+                <div class="description">
+                    <h1><?php echo $news->getTitle()?></h1>
+                    <p><?php echo $news->getTextDescription()?></p>
+                    <p class="read-more">
+                        <a href="<?php echo $news->getLink() ?>" target="_blank">Read More</a>
+                    </p>
+                </div>
+            </div>
+            <?php $cnt++ ?>
+        <?php endforeach; ?>
+    </div>
+
+    <!-- Pagination -->
+    <?php if($totalPages > 1): ?>
+        <div class="pagination">
+            <?php if($currentPage > 1): ?>
+                <a href="<?php echo $block->getUrl('*/*', ['page' => $currentPage - 1]) ?>" class="page-link">&laquo; Trước</a>
+            <?php endif; ?>
+
+            <?php for($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="<?php echo $block->getUrl('*/*', ['page' => $i]) ?>" 
+                   class="page-link <?php echo ($i === $currentPage) ? 'active' : '' ?>">
+                    <?php echo $i ?>
+                </a>
+            <?php endfor; ?>
+
+            <?php if($currentPage < $totalPages): ?>
+                <a href="<?php echo $block->getUrl('*/*', ['page' => $currentPage + 1]) ?>" class="page-link">Sau &raquo;</a>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+
+<link rel="stylesheet" href="<?= $block->getViewFileUrl('Bang_News::css/styles.css') ?>">

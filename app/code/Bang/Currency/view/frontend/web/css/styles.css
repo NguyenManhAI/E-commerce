@@ -1,0 +1,147 @@
+.currency-converter {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.converter-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.converter-inputs select, 
+.converter-inputs input {
+    flex: 1;
+    min-width: 150px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.converter-result {
+    text-align: center;
+}
+
+.conversion-result {
+    font-weight: bold;
+}
+
+.error-message, 
+.error-alert {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+.currency-error-message {
+    background-color: #ffeeee;
+    border: 1px solid red;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Bảng tỷ giá ngoại tệ */
+.currency-rate-tbl {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.currency-rate-tbl th, 
+.currency-rate-tbl td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    padding: 15px;
+    background-color: rgba(0, 123, 255, 0.05);
+    color: #0056b3;
+}
+
+th {
+    text-align: left;
+    background-color: #007bff;
+    color: #fff;
+}
+
+thead th {
+    background-color: #0069d9;
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+tbody td {
+    position: relative;
+}
+
+tbody td:hover::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(0, 123, 255, 0.1);
+    z-index: -1;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Cho phép cuộn ngang */
+        white-space: nowrap; /* Đảm bảo các phần tử không bị bẻ dòng */
+    }
+
+    thead {
+        display: none; /* Ẩn tiêu đề khi màn hình nhỏ */
+    }
+
+    tbody tr {
+        display: block;
+        margin-bottom: 10px; /* Tạo khoảng cách giữa các dòng */
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+    }
+
+    tbody td {
+        display: block;
+        text-align: right;
+        padding: 10px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        background-color: #ffffff; /* Màu nền trắng cho ô */
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #007bff;
+        float: left;
+        margin-right: 10px;
+    }
+
+    .converter-inputs {
+        flex-direction: column;
+    }
+    
+    .converter-inputs select, 
+    .converter-inputs input {
+        width: 100%;
+    }
+}
