@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title> Thời tiết </title>
+        <css src="Bang_Weather::css/styles.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="weather" class="Bang\Weather\Block\Report"
+                   template="Bang_Weather::weather.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>
