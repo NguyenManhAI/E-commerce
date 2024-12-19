@@ -1,0 +1,74 @@
+<?php
+/** @var $block \Company\Module\Block\Calculator */
+?> 
+<div class="calculator-form">
+<?= $block->getBlockHtml('formkey') ?>
+    <h2>Calculator</h2>
+    <form id="calculator-form">
+        <div>
+            <label for="number1">Number 1:</label>
+            <input type="number" id="number1" name="number1" required>
+        </div>
+        <div>
+            <label for="number2">Number 2:</label>
+            <input type="number" id="number2" name="number2" required>
+        </div>
+        <button id="calBtn" type="button" onclick="calculateTotal()">Calculate</button>
+    </form>
+    <div id="isLoading" style="display:none;">Loading...</div>
+    <div id="result"></div>
+
+    <script>
+function calculateTotal() {
+    var number1 = document.getElementById('number1').value;
+    var number2 = document.getElementById('number2').value;
+    var resultDiv = document.getElementById('result');
+    var calculateButton = document.querySelector('#calBtn');
+    console.log(calculateButton.innerHTML);
+
+    // Disable button và hiển thị loading
+    calculateButton.disabled = true;
+    calculateButton.innerHTML = 'Đang tính...';
+    resultDiv.innerHTML = '';
+
+    // Lấy form key của Magento
+    var form_key = document.querySelector('input[name="form_key"]').value;
+
+    fetch('<?= $block->getCalculateActionUrl() ?>', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: `form_key=${form_key}&number1=${number1}&number2=${number2}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            resultDiv.innerHTML = 'Lỗi: ' + data.message;
+        } else {
+            resultDiv.innerHTML = 'Tổng: ' + data.total;
+        }
+    })
+    .catch(error => {
+        resultDiv.innerHTML = 'Có lỗi xảy ra';
+        console.error('Error:', error);
+    })
+    .finally(() => {
+        // Bật lại button khi hoàn tất
+        calculateButton.disabled = false;
+        calculateButton.innerHTML = 'Calculate';
+    });
+}
+</script>
+<style>
+    .loading {
+    color: blue;
+    font-style: italic;
+}
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+</style>
+</div>
