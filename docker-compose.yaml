@@ -4,7 +4,7 @@ services:
     container_name: nginx
     restart: always
     ports:
-      - "8000:80"
+      - "80:80"
     volumes:
       - var-www-html:/var/www/html
       - ./nginx/conf.d:/etc/nginx/conf.d/
